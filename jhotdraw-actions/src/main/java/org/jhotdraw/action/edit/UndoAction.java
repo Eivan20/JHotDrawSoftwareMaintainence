@@ -10,10 +10,14 @@ package org.jhotdraw.action.edit;
 import java.awt.event.*;
 import java.beans.*;
 import javax.swing.*;
+
+import dk.sdu.mmmi.featuretracer.lib.FeatureEntryPoint;
 import org.jhotdraw.action.AbstractViewAction;
 import org.jhotdraw.api.app.Application;
 import org.jhotdraw.api.app.View;
 import org.jhotdraw.util.*;
+
+import static org.jhotdraw.util.ResourceBundleUtil.*;
 
 /**
  * Undoes the last user action.
@@ -35,7 +39,7 @@ public class UndoAction extends AbstractViewAction {
 
     private static final long serialVersionUID = 1L;
     public static final String ID = "edit.undo";
-    private ResourceBundleUtil labels = ResourceBundleUtil.getBundle("org.jhotdraw.action.Labels");
+    private ResourceBundleUtil labels = getBundle("org.jhotdraw.action.Labels");
     private PropertyChangeListener redoActionPropertyListener = new PropertyChangeListener() {
         @Override
         public void propertyChange(PropertyChangeEvent evt) {
@@ -100,7 +104,6 @@ public class UndoAction extends AbstractViewAction {
             undoActionInView.removePropertyChangeListener(redoActionPropertyListener);
         }
     }
-
     @Override
     public void actionPerformed(ActionEvent e) {
         Action realUndoAction = getRealUndoAction();
